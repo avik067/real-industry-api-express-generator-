@@ -14,7 +14,7 @@ var app = express();
 /////////////////////////// CONNECT ////////////////////////
 mongoose.connect(process.env.MONGOURL)
   .then(() => console.log("Database Connected!"))
-  .catch(() => console.log("Database not Connected!"));
+  .catch((e) => console.log(`Database not Connected!,${e}`));
 /////////////////////////////////////////////////////////
 
 // view engine setup
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+////////////////////////////////////////////////////////////////////////// use PATH
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
